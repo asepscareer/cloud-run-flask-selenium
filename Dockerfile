@@ -11,6 +11,7 @@ COPY main.py .
 RUN apt-get update && apt-get install -y \
     chromium \
     wget \
+    unzip \
     && rm -rf /var/lib/apt/lists/*
 
 # Unduh ChromeDriver (sesuaikan versi sesuai kebutuhan)
