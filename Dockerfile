@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
 # Unduh ChromeDriver (sesuaikan versi sesuai kebutuhan)
 # Pastikan versi ChromeDriver cocok dengan versi Chrome yang Anda gunakan
 RUN wget https://storage.googleapis.com/chrome-for-testing-public/127.0.6533.99/linux64/chromedriver-linux64.zip
+RUN ls -l
 RUN unzip chromedriver_linux64.zip
 RUN mv chromedriver /usr/bin/chromedriver
 RUN rm chromedriver_linux64.zip
