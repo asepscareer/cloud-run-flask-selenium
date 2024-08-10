@@ -2,6 +2,7 @@ import os
 
 from flask import Flask, jsonify
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 
 app = Flask(__name__)
 
@@ -14,7 +15,7 @@ def scrape():
     options.add_argument('--no-sandbox')
     options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 
-    driver = webdriver.Chrome(options=options, executable_path=os.environ.get("CHROMEDRIVER_PATH"))
+    driver = webdriver.Chrome(options=options, service=Service(os.environ.get("CHROMEDRIVER_PATH")))
 
     try:
         driver.get("https://medium.com/")
