@@ -10,6 +10,7 @@ COPY main.py .
 # Install Chrome (jika belum terinstal)
 RUN apt-get update && apt-get install -y \
     chromium \
+    wget \
     && rm -rf /var/lib/apt/lists/*
 
 # Unduh ChromeDriver (sesuaikan versi sesuai kebutuhan)
