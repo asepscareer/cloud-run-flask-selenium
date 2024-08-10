@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
 
 # Set environment variables
 ENV CHROME_DRIVER_PATH=/usr/bin/chromedriver
-ENV GOOGLE_CHROME_BIN /usr/bin/google-chrome
+ENV GOOGLE_CHROME_BIN=/usr/bin/google-chrome
 
 EXPOSE 8080
 
