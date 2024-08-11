@@ -7,9 +7,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY main.py .
 
-RUN rm /usr/bin/google-chrome
-RUN rm /usr/bin/chromedriver
-
 # Install Chrome (jika belum terinstal)
 RUN apt-get update && apt-get install -y \
     google-chrome-stable=114.0.5735.196 \
