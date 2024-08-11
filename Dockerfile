@@ -18,7 +18,7 @@ RUN dpkg -i libu2f-udev_1.1.4-1_all.deb || apt-get -f install -y
 
 # Install Chrome (latest stable version)
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-RUN dpkg -i google-chrome-stable_current_amd64.deb
+RUN dpkg -i --fix-missing google-chrome-stable_current_amd64.deb
 
 # Get latest ChromeDriver version and download
 RUN CHROME_DRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`
