@@ -21,12 +21,12 @@ RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
 RUN apt install -y --fix-missing ./google-chrome-stable_current_amd64.deb
 
 # Get latest ChromeDriver version and download
-RUN wget -N https://storage.googleapis.com/chrome-for-testing-public/127.0.6533.99/linux64/chromedriver-linux64.zip -P /tmp/
+RUN wget -N https://storage.googleapis.com/chrome-for-testing-public/127.0.6533.99/linux64/chromedriver-linux64.zip
 
 # Unzip and install ChromeDriver
-RUN unzip -o /tmp/chromedriver_linux64.zip -d /tmp/
-RUN chmod +x /tmp/chromedriver
-RUN mv /tmp/chromedriver /usr/bin/chromedriver
+RUN unzip chromedriver_linux64.zip
+RUN ls
+RUN mv chromedriver /usr/bin/chromedriver
 
 # Set environment variables
 ENV CHROME_DRIVER_PATH=/usr/bin/chromedriver
