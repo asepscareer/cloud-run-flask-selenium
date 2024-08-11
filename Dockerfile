@@ -13,7 +13,7 @@ RUN apt install -y wget curl unzip
 
 # Install libu2f-host library (if needed for your application)
 RUN wget http://archive.ubuntu.com/ubuntu/pool/main/libu/libu2f-host/libu2f-udev_1.1.4-1_all.deb
-RUN dpkg -i libu2f-udev_1.1.4-1_all.deb
+RUN dpkg -i libu2f-udev_1.1.4-1_all.deb || apt-get -f install -y
 
 # Install Chrome (latest stable version)
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
