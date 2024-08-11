@@ -9,7 +9,7 @@ COPY main.py .
 
 # Install Chrome (jika belum terinstal)
 RUN apt-get update && apt-get install -y \
-    google-chrome-stable=114.0.5735.196 \
+    google-chrome-stable=114.0.5735.184-1 \
     wget \
     unzip \
     && rm -rf /var/lib/apt/lists/*
