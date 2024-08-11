@@ -2,9 +2,10 @@ import os
 
 from flask import Flask, jsonify
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
+import chromedriver_autoinstaller
 
 app = Flask(__name__)
+chromedriver_autoinstaller.install()
 
 
 @app.route('/scrape', methods=['GET'])
@@ -13,9 +14,8 @@ def scrape():
     options.add_argument('--headless=new')
     options.add_argument('--disable-gpu')
     options.add_argument('--no-sandbox')
-    options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 
-    driver = webdriver.Chrome(options=options, service=Service(os.environ.get("CHROMEDRIVER_PATH")))
+    driver = webdriver.Chrome(options=options)
 
     try:
         driver.get("https://medium.com/")
