@@ -7,16 +7,19 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY main.py .
 
+RUN rm /usr/bin/google-chrome
+RUN rm /usr/bin/chromedriver
+
 # Install Chrome (jika belum terinstal)
 RUN apt-get update && apt-get install -y \
-    chromium \
+    google-chrome-stable=114.0.5735.196 \
     wget \
     unzip \
     && rm -rf /var/lib/apt/lists/*
 
 # Unduh ChromeDriver (sesuaikan versi sesuai kebutuhan)
 # Pastikan versi ChromeDriver cocok dengan versi Chrome yang Anda gunakan
-RUN wget https://storage.googleapis.com/chrome-for-testing-public/127.0.6533.99/linux64/chromedriver-linux64.zip
+RUN wget RUN wget https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip
 RUN ls -l
 RUN unzip chromedriver_linux64.zip
 RUN mv chromedriver /usr/bin/chromedriver
