@@ -7,23 +7,29 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY main.py .
 
-# Install Chrome (jika belum terinstal)
-RUN apt-get update && apt-get install -y \
-    chromium \
-    wget \
-    unzip \
-    && rm -rf /var/lib/apt/lists/*
+# Install dependencies
+RUN apt -y update
+RUN apt install -y wget curl unzip
 
-# Unduh ChromeDriver (sesuaikan versi sesuai kebutuhan)
-# Pastikan versi ChromeDriver cocok dengan versi Chrome yang Anda gunakan
-RUN wget RUN wget https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip
-RUN ls -l
-RUN unzip chromedriver_linux64.zip
-RUN mv chromedriver /usr/bin/chromedriver
-RUN rm chromedriver_linux64.zip
+# Install libu2f-host library (if needed for your application)
+RUN wget http://archive.ubuntu.com/ubuntu/pool/main/libu/libu2f-host/libu2f-udev_1.1.4-1_all.deb
+RUN dpkg -i libu2f-udev_1.1.4-1_all.deb
+
+# Install Chrome (latest stable version)
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN dpkg -i google-chrome-stable_current_amd64.deb
+
+# Get latest ChromeDriver version and download
+RUN CHROME_DRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`
+RUN wget -N https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip -P /tmp/
+
+# Unzip and install ChromeDriver
+RUN unzip -o /tmp/chromedriver_linux64.zip -d /tmp/
+RUN chmod +x /tmp/chromedriver
+RUN mv /tmp/chromedriver /usr/local/bin/chromedriver
 
 # Set environment variables
-ENV CHROME_DRIVER_PATH=/usr/bin/chromedriver
+ENV CHROME_DRIVER_PATH=/usr/local/bin/chromedriver
 ENV GOOGLE_CHROME_BIN=/usr/bin/google-chrome
 
 EXPOSE 8080
