@@ -18,7 +18,7 @@ def scrape():
     driver = webdriver.Chrome(options=options)
 
     try:
-        driver.get("https://medium.com/")
+        driver.get("https://www.octoparse.com/")
         title = driver.title
         driver.quit()
 
