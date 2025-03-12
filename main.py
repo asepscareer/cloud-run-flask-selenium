@@ -20,6 +20,7 @@ def scrape():
     try:
         driver.get("https://www.octoparse.com/")
         title = driver.title
+        print(title)
         driver.quit()
 
         return jsonify({'title': title})
